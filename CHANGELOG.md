@@ -28,6 +28,7 @@ template:
 - fixed `is_homogeneous()` overloads with `first_nonmatch` outparam being broken in optimized builds (#231) (@Forbinn)
 - fixed unclear error message when parsing integers that would overflow (#224) (@chrimbo)
 - fixed CMake `install` target installing `meson.build` files (#236) (@JWCS)
+- fixed compilation warnings when compiling with `-ffinite-math-only`in GCC/Clang (#241) (@theakman2)
 
 ## v3.4.0
 

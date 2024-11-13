@@ -1793,8 +1793,12 @@ TOML_IMPL_NAMESPACE_START
 			if (cp && !is_value_terminator(*cp))
 				set_error_and_return_default("expected value-terminator, saw '"sv, to_sv(*cp), "'"sv);
 
+#if TOML_FINITE_MATH_ONLY
+			set_error_and_return_default("inf/NaN not allowed when compiled with finite math"sv);
+#else
 			return inf ? (negative ? -std::numeric_limits<double>::infinity() : std::numeric_limits<double>::infinity())
 					   : std::numeric_limits<double>::quiet_NaN();
+#endif
 		}
 
 		TOML_NODISCARD

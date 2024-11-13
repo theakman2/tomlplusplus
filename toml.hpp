@@ -377,6 +377,15 @@
 #endif
 #endif
 
+// TOML_FINITE_MATH_ONLY
+#ifndef TOML_FINITE_MATH_ONLY
+#if defined(__FINITE_MATH_ONLY__) && __FINITE_MATH_ONLY__ == 1
+#define TOML_FINITE_MATH_ONLY 1
+#else
+#define TOML_FINITE_MATH_ONLY 0
+#endif
+#endif
+
 // TOML_CONCAT
 #define TOML_CONCAT_1(x, y) x##y
 #define TOML_CONCAT(x, y)	TOML_CONCAT_1(x, y)
@@ -14284,8 +14293,12 @@ TOML_IMPL_NAMESPACE_START
 			if (cp && !is_value_terminator(*cp))
 				set_error_and_return_default("expected value-terminator, saw '"sv, to_sv(*cp), "'"sv);
 
+#if TOML_FINITE_MATH_ONLY
+			set_error_and_return_default("inf/NaN not allowed when compiled with finite math"sv);
+#else
 			return inf ? (negative ? -std::numeric_limits<double>::infinity() : std::numeric_limits<double>::infinity())
 					   : std::numeric_limits<double>::quiet_NaN();
+#endif
 		}
 
 		TOML_NODISCARD
@@ -17685,6 +17698,7 @@ TOML_POP_WARNINGS;
 #undef TOML_EVAL_BOOL_0
 #undef TOML_EVAL_BOOL_1
 #undef TOML_EXTERNAL_LINKAGE
+#undef TOML_FINITE_MATH_ONLY
 #undef TOML_FLAGS_ENUM
 #undef TOML_FLOAT_CHARCONV
 #undef TOML_FLOAT128

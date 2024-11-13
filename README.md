@@ -217,6 +217,7 @@ won't need to mess with these at all, but if you do, set them before including t
 | `TOML_EXPORTED_MEMBER_FUNCTION`   |     define     | API export annotation to add to non-static class member functions.                                        | undefined             |
 | `TOML_EXPORTED_FREE_FUNCTION`     |     define     | API export annotation to add to free functions.                                                           | undefined             |
 | `TOML_EXPORTED_STATIC_FUNCTION`   |     define     | API export annotation to add to static functions.                                                         | undefined             |
+| `TOML_FINITE_MATH_ONLY`           |     boolean    | Set to generate a parse error if NaN or Inf floats are encountered.                                       | per compiler settings |
 | `TOML_HEADER_ONLY`                |    boolean     | Disable this to explicitly control where toml++'s implementation is compiled (e.g. as part of a library). | `1`                   |
 | `TOML_IMPLEMENTATION`             |     define     | Define this to enable compilation of the library's implementation when `TOML_HEADER_ONLY` == `0`.         | undefined             |
 | `TOML_OPTIONAL_TYPE`              |   type name    | Overrides the `optional<T>` type used by the library if you need [something better than std::optional].   | undefined             |

@@ -352,6 +352,15 @@
 #endif
 #endif
 
+// TOML_FINITE_MATH_ONLY
+#ifndef TOML_FINITE_MATH_ONLY
+#if defined(__FINITE_MATH_ONLY__) && __FINITE_MATH_ONLY__ == 1
+#define TOML_FINITE_MATH_ONLY 1
+#else
+#define TOML_FINITE_MATH_ONLY 0
+#endif
+#endif
+
 // TOML_CONCAT
 #define TOML_CONCAT_1(x, y) x##y
 #define TOML_CONCAT(x, y)	TOML_CONCAT_1(x, y)
